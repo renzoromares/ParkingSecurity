@@ -1,0 +1,17 @@
+E:\Study Area\Project Design\Parking Management - Bunifu\ParkingSecurityAndManagement\ParkingSecurityAndManagement\bin\Debug\ParkingSecurityAndManagement.exe.config
+E:\Study Area\Project Design\Parking Management - Bunifu\ParkingSecurityAndManagement\ParkingSecurityAndManagement\bin\Debug\ParkingSecurityAndManagement.exe
+E:\Study Area\Project Design\Parking Management - Bunifu\ParkingSecurityAndManagement\ParkingSecurityAndManagement\bin\Debug\ParkingSecurityAndManagement.pdb
+E:\Study Area\Project Design\Parking Management - Bunifu\ParkingSecurityAndManagement\ParkingSecurityAndManagement\bin\Debug\Bunifu_UI_v1.52.dll
+E:\Study Area\Project Design\Parking Management - Bunifu\ParkingSecurityAndManagement\ParkingSecurityAndManagement\obj\Debug\ParkingSecurityAndManagement.csprojAssemblyReference.cache
+E:\Study Area\Project Design\Parking Management - Bunifu\ParkingSecurityAndManagement\ParkingSecurityAndManagement\obj\Debug\ParkingSecurityAndManagement.Properties.Resources.resources
+E:\Study Area\Project Design\Parking Management - Bunifu\ParkingSecurityAndManagement\ParkingSecurityAndManagement\obj\Debug\ParkingSecurityAndManagement.csproj.GenerateResource.cache
+E:\Study Area\Project Design\Parking Management - Bunifu\ParkingSecurityAndManagement\ParkingSecurityAndManagement\obj\Debug\ParkingSecurityAndManagement.csproj.CoreCompileInputs.cache
+E:\Study Area\Project Design\Parking Management - Bunifu\ParkingSecurityAndManagement\ParkingSecurityAndManagement\obj\Debug\ParkingSecurityAndManagement.csproj.CopyComplete
+E:\Study Area\Project Design\Parking Management - Bunifu\ParkingSecurityAndManagement\ParkingSecurityAndManagement\obj\Debug\ParkingSecurityAndManagement.exe
+E:\Study Area\Project Design\Parking Management - Bunifu\ParkingSecurityAndManagement\ParkingSecurityAndManagement\obj\Debug\ParkingSecurityAndManagement.pdb
+E:\Study Area\Project Design\Parking Management - Bunifu\ParkingSecurityAndManagement\ParkingSecurityAndManagement\obj\Debug\ParkingSecurityAndManagement.FrmLogin.resources
+E:\Study Area\Project Design\Parking Management - Bunifu\ParkingSecurityAndManagement\ParkingSecurityAndManagement\obj\Debug\ParkingSecurityAndManagement.FrmMenu.resources
+E:\Study Area\Project Design\Parking Management - Bunifu\ParkingSecurityAndManagement\ParkingSecurityAndManagement\obj\Debug\ParkingSecurityAndManagement.FrmRegister.resources
+E:\Study Area\Project Design\Parking Management - Bunifu\ParkingSecurityAndManagement\ParkingSecurityAndManagement\obj\Debug\ParkingSecurityAndManagement.FrmSearchAccount.resources
+E:\Study Area\Project Design\Parking Management - Bunifu\ParkingSecurityAndManagement\ParkingSecurityAndManagement\obj\Debug\ParkingSecurityAndManagement.FrmAccount.resources
+E:\Study Area\Project Design\Parking Management - Bunifu\ParkingSecurityAndManagement\ParkingSecurityAndManagement\obj\Debug\ParkingSecurityAndManagement.FrmRecords.resources
