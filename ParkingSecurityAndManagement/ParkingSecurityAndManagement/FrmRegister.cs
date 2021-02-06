@@ -68,7 +68,7 @@ namespace ParkingSecurityAndManagement
             try
             {
                 OpenFileDialog open = new OpenFileDialog();
-                open.Filter = "(*.jpg; *.jpeg; )| *.*.png;; *.jpeg; *.png;";
+                open.Filter = "(*.jpg; *.jpeg; *.png;)| *.*.png;; *.jpeg; *.png;";
                 if (open.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     txtCR.Text = open.FileName;
@@ -87,22 +87,144 @@ namespace ParkingSecurityAndManagement
         private  void btnRegister_Click(object sender, EventArgs e)
         {
 
-            save2Registration();
-            save2Credential();
-            MessageBox.Show("Registration Successful!");
-            refresh();
-            /*   bool checker = checkValidation();
-               if(checker == true)
-               {
+            verifyRegistration();
+            
+        }
 
-               }
-               else
-               {
-                   MessageBox.Show("Please complete the registration!");
-               } */
+        private void verifyRegistration()
+        {
+            bool checker = checkValidation();
+            bool isDuplicatePlateID = checkDuplicatePlateID();
+            if (cmbPosition.selectedValue == "Student")
+            {
+                bool isDuplicateID = checkDuplicateIDStudent();
+                if (checker == true)
+                {
+                    if (isDuplicatePlateID == true)
+                    {
+                        if(isDuplicateID == true)
+                        {
+                            save2Registration();
+                            save2Credential();
+                            MessageBox.Show("Registration Successful!");
+                            refresh();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Student can only register 1 account!");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Plate Number already registered!");
+                    }
 
+                }
+                else
+                {
+                    MessageBox.Show("Please complete the registration!");
+                }
+            }
+            else if((cmbPosition.selectedValue == "Faculty"))
+            {
+                if (checker == true)
+                {
+                    if (isDuplicatePlateID == true)
+                    {
 
+                        save2Registration();
+                        save2Credential();
+                        MessageBox.Show("Registration Successful!");
+                        refresh();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Plate Number already registered!");
+                    }
 
+                }
+                else
+                {
+                    MessageBox.Show("Please complete the registration!");
+                }
+            }
+        }
+
+       
+        private bool checkDuplicatePlateID()
+        {
+
+            bool isValidator = false;
+            using (SqlConnection conn = new SqlConnection(ConnectionString.connect))
+            {
+               
+                try
+                {
+                    string query = "SELECT * FROM VEHICLE_OWNER WHERE PlateID = '" + txtPlateNumber.Text + "' ";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        conn.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            isValidator = false;
+                        }
+                        else
+                        {
+                            isValidator = true;
+                        }
+                        reader.Close();
+                        conn.Close();
+
+                    }
+                }
+                catch(SqlException ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    conn.Close();
+                }
+               
+            }
+
+            return isValidator;
+
+        }
+
+        private bool checkDuplicateIDStudent()
+        {
+            bool isValidator = false;
+            using (SqlConnection conn = new SqlConnection(ConnectionString.connect))
+            {
+
+                try
+                {
+                    string query = "SELECT * FROM VEHICLE_OWNER WHERE Id_Number = '" + txtIdNumber.Text + "'  ";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        conn.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            isValidator = false;
+                        }
+                        else
+                        {
+                            isValidator = true;
+                        }
+                        reader.Close();
+                        conn.Close();
+
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    conn.Close();
+                }
+
+            }
+
+            return isValidator;
         }
 
         private bool checkValidation()
@@ -121,25 +243,37 @@ namespace ParkingSecurityAndManagement
                             {
                                 if (!string.Equals(txtPlateNumber.Text, "Plate Number") && !string.Equals(txtPlateNumber.Text, ""))
                                 {
-                                    if (!string.Equals(txtDepartment.Text, "Department") && !string.Equals(txtDepartment.Text, ""))
+                                    if (!string.Equals(txtVehicleModel.Text, "Vehicle Model") && !string.Equals(txtVehicleModel.Text,""))
                                     {
-                                        if (cmbPosition.selectedIndex != -1)
+                                        if(!string.Equals(txtCarmake.Text,"Car make") && !string.Equals(txtCarmake.Text,""))
                                         {
-                                            if (cmbVehicleType.selectedIndex != -1)
+                                            if (!string.Equals(txtVehicleColor.Text, "Color") && !string.Equals(txtVehicleColor.Text, ""))
                                             {
-                                                if (!string.Equals(txtFaceImage.Text, "Face Image"))
+                                                if (!string.Equals(txtDepartment.Text, "Department") && !string.Equals(txtDepartment.Text, ""))
                                                 {
-                                                    if (!string.Equals(txtOfficialReceipt.Text, "Official Receipt") && !string.Equals(txtOfficialReceipt.Text, ""))
+                                                    if (cmbPosition.selectedIndex != -1)
                                                     {
-                                                        if (!string.Equals(txtCR.Text, "Certificate of Registration"))
+                                                        if (cmbVehicleType.selectedIndex != -1)
                                                         {
-                                                            isValidator = true;
+                                                            if (!string.Equals(txtFaceImage.Text, "Face Image"))
+                                                            {
+                                                                if (!string.Equals(txtOfficialReceipt.Text, "Official Receipt") && !string.Equals(txtOfficialReceipt.Text, ""))
+                                                                {
+                                                                    if (!string.Equals(txtCR.Text, "Certificate of Registration"))
+                                                                    {
+                                                                        isValidator = true;
+                                                                    }
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 }
                                             }
                                         }
+                                        
+                                       
                                     }
+                                    
 
                                 }
                             }
@@ -178,6 +312,9 @@ namespace ParkingSecurityAndManagement
             txtFaceImage.Text = "";
             txtOfficialReceipt.Text = "";
             txtCR.Text = "";
+            txtCarmake.Text = "";
+            txtVehicleModel.Text = "";
+            txtVehicleColor.Text = "";
         }
 
         private void save2Registration()
@@ -185,27 +322,30 @@ namespace ParkingSecurityAndManagement
             using (SqlConnection conn = new SqlConnection(ConnectionString.connect))
             {
                 conn.Open();
-                using (SqlCommand cmd = new SqlCommand("INSERT INTO VEHICLE_OWNER VALUES(@Id_Number," +
-                                                                                        "@FirstName," +
-                                                                                        "@LastName," +
-                                                                                        "@Position," +
-                                                                                        "@Contacts," +
-                                                                                        "@Department," +
-                                                                                        "@Password)", conn))
+                string query = "INSERT INTO VEHICLE_OWNER VALUES(@PlateID," +
+                                                                "@Id_Number," +
+                                                                "@FirstName," +
+                                                                "@LastName," +
+                                                                "@Position," +
+                                                                "@Contacts," +
+                                                                "@Department," +
+                                                                "@Password)";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
 
-                    int id = Convert.ToInt32(txtIdNumber.Text);
-
-                    cmd.Parameters.AddWithValue("@Id_Number", id);
+                    cmd.Parameters.AddWithValue("@PlateID", txtPlateNumber.Text);
+                    cmd.Parameters.AddWithValue("@Id_Number", txtIdNumber.Text);
                     cmd.Parameters.AddWithValue("@FirstName", txtfname.Text);
-                    cmd.Parameters.AddWithValue("@LastName", txtlname.Text) ;
+                    cmd.Parameters.AddWithValue("@LastName", txtlname.Text);
                     cmd.Parameters.AddWithValue("@Position", cmbPosition.selectedValue.ToString()); ;
                     cmd.Parameters.AddWithValue("@Contacts", txtContact.Text);
                     cmd.Parameters.AddWithValue("@Department", txtDepartment.Text);
                     cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
+
                     cmd.ExecuteNonQuery();
                     conn.Close();
-                   
+
                 }
             }
             
@@ -213,20 +353,24 @@ namespace ParkingSecurityAndManagement
 
         private void save2Credential()
         {
-            
+
             using (SqlConnection conn = new SqlConnection(ConnectionString.connect))
             {
-                using (SqlCommand cmd = new SqlCommand("INSERT INTO CREDENTIALS VALUES(@PlateNumber," +
-                                                           "@Vehicle_Type," +
-                                                           "@Official_Receipt," +
-                                                           "@Cert_Registration," +
-                                                           "@Face_Image," +
-                                                           "@Status," +
-                                                           "@Id_Number)", conn))
-                {
-                    conn.Open();
+                string query = "INSERT INTO CREDENTIALS VALUES(@Vehicle_Type," +
+                                                                "@Vehicle_Model," +
+                                                                "@Vehicle_Carmake," +
+                                                                "@Vehicle_Color," +
+                                                                "@Official_Receipt, " +
+                                                                "@Cert_Registration," +
+                                                                "@Face_Image," +
+                                                                "@Status," +
+                                                                "@PlateID)";
 
-                    int id = Convert.ToInt32(txtIdNumber.Text);
+
+                using (SqlCommand cmd = new SqlCommand(query,conn))
+                {
+
+                    conn.Open();
 
                     byte[] img = null;
                     FileStream fs = new FileStream(txtFaceImage.Text.ToString(), FileMode.Open, FileAccess.Read);
@@ -240,65 +384,26 @@ namespace ParkingSecurityAndManagement
 
 
                     byte[] img2 = null;
-                    FileStream fs2 = new FileStream(txtOfficialReceipt.Text.ToString(), FileMode.Open, FileAccess.Read);
+                    FileStream fs2 = new FileStream(txtCR.Text.ToString(), FileMode.Open, FileAccess.Read);
                     BinaryReader br2 = new BinaryReader(fs2);
-                    img2 = br2.ReadBytes((int)fs2.Length);
+                    img2 = br2.ReadBytes((int)fs2.Length);  
 
-                
-
-                    cmd.Parameters.AddWithValue("@PlateNumber", txtPlateNumber.Text.ToUpper());
                     cmd.Parameters.AddWithValue("@Vehicle_Type", cmbVehicleType.selectedValue.ToString());
+                    cmd.Parameters.AddWithValue("@Vehicle_Model", txtVehicleModel.Text);
+                    cmd.Parameters.AddWithValue("@Vehicle_Carmake", txtCarmake.Text);
+                    cmd.Parameters.AddWithValue("@Vehicle_Color", txtVehicleColor.Text);
                     cmd.Parameters.AddWithValue("@Official_Receipt", img1);
                     cmd.Parameters.AddWithValue("@Cert_Registration", img2);
                     cmd.Parameters.AddWithValue("@Face_Image", img);
                     cmd.Parameters.AddWithValue("@Status", 0);
-                    cmd.Parameters.AddWithValue("@Id_Number", id);
-
+                    cmd.Parameters.AddWithValue("@PlateID", txtPlateNumber.Text);
+               
                     cmd.ExecuteNonQuery();
                     conn.Close();
                 }
             }
         }
-
-        public void offline()
-        {
-            using (SqlConnection conn = new SqlConnection(ConnectionString.connect))
-
-            {
-
-               try
-               {
-                    conn.Open(); 
-                    
-                    byte[] img = null;
-                    FileStream fs = new FileStream(txtFaceImage.Text.ToString(), FileMode.Open, FileAccess.Read);
-                    BinaryReader br = new BinaryReader(fs);
-                    img = br.ReadBytes((int)fs.Length);
-
-                    string query = "INSERT INTO TEST VALUES(@Id_Number," +
-                                                           "@Face)";
-
-
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@Id_Number",2);
-                        cmd.Parameters.AddWithValue("@Face", img);
-                        cmd.ExecuteNonQuery();
-                        conn.Close();
-                        MessageBox.Show("Saved!");
-                    }
-               }
-
-               catch
-               {
-                    MessageBox.Show("ERROR");
-                    conn.Close();
-               }
-               
-            }
-        }
-
-
+     
         private void txtIdNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);

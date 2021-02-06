@@ -20,6 +20,7 @@ namespace ParkingSecurityAndManagement
         private void FrmRecords_Load(object sender, EventArgs e)
         {
             dataGridDesign();
+            loadData();
         }
         public void dataGridDesign()
         {
@@ -37,6 +38,11 @@ namespace ParkingSecurityAndManagement
             dataGridView1.AllowUserToResizeRows = false;
             dataGridView1.ColumnHeadersHeight = 50;
             dataGridView1.RowHeadersVisible = true;
+        }
+
+        private void loadData()
+        {
+
         }
     }
 }

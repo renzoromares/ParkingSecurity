@@ -45,6 +45,9 @@
             this.txtFaceImage = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.btnAddFace = new Bunifu.Framework.UI.BunifuFlatButton();
             this.cmbVehicleType = new Bunifu.Framework.UI.BunifuDropdown();
+            this.txtVehicleColor = new Bunifu.Framework.UI.BunifuMaterialTextbox();
+            this.txtVehicleModel = new Bunifu.Framework.UI.BunifuMaterialTextbox();
+            this.txtCarmake = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.SuspendLayout();
             // 
             // txtIdNumber
@@ -196,14 +199,14 @@
         "Faculty ",
         "Student ",
         "Staff"};
-            this.cmbPosition.Location = new System.Drawing.Point(384, 163);
+            this.cmbPosition.Location = new System.Drawing.Point(372, 267);
             this.cmbPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbPosition.Name = "cmbPosition";
             this.cmbPosition.NomalColor = System.Drawing.Color.DarkGray;
             this.cmbPosition.onHoverColor = System.Drawing.Color.DarkGray;
             this.cmbPosition.selectedIndex = -1;
             this.cmbPosition.Size = new System.Drawing.Size(255, 29);
-            this.cmbPosition.TabIndex = 10;
+            this.cmbPosition.TabIndex = 12;
             // 
             // btnRegister
             // 
@@ -226,7 +229,7 @@
             this.btnRegister.IconVisible = true;
             this.btnRegister.IconZoom = 90D;
             this.btnRegister.IsTab = false;
-            this.btnRegister.Location = new System.Drawing.Point(627, 501);
+            this.btnRegister.Location = new System.Drawing.Point(610, 501);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(48)))), ((int)(((byte)(15)))));
             this.btnRegister.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
@@ -262,7 +265,7 @@
             this.btnAddFileCR.IconVisible = true;
             this.btnAddFileCR.IconZoom = 90D;
             this.btnAddFileCR.IsTab = false;
-            this.btnAddFileCR.Location = new System.Drawing.Point(660, 319);
+            this.btnAddFileCR.Location = new System.Drawing.Point(648, 423);
             this.btnAddFileCR.Name = "btnAddFileCR";
             this.btnAddFileCR.Normalcolor = System.Drawing.Color.Gray;
             this.btnAddFileCR.OnHovercolor = System.Drawing.Color.Gray;
@@ -298,7 +301,7 @@
             this.btnAddFileOR.IconVisible = true;
             this.btnAddFileOR.IconZoom = 90D;
             this.btnAddFileOR.IsTab = false;
-            this.btnAddFileOR.Location = new System.Drawing.Point(660, 267);
+            this.btnAddFileOR.Location = new System.Drawing.Point(648, 371);
             this.btnAddFileOR.Name = "btnAddFileOR";
             this.btnAddFileOR.Normalcolor = System.Drawing.Color.Gray;
             this.btnAddFileOR.OnHovercolor = System.Drawing.Color.Gray;
@@ -324,11 +327,11 @@
             this.txtPlateNumber.LineIdleColor = System.Drawing.Color.Gray;
             this.txtPlateNumber.LineMouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(48)))), ((int)(((byte)(15)))));
             this.txtPlateNumber.LineThickness = 3;
-            this.txtPlateNumber.Location = new System.Drawing.Point(384, 44);
+            this.txtPlateNumber.Location = new System.Drawing.Point(63, 408);
             this.txtPlateNumber.Margin = new System.Windows.Forms.Padding(4);
             this.txtPlateNumber.Name = "txtPlateNumber";
             this.txtPlateNumber.Size = new System.Drawing.Size(255, 44);
-            this.txtPlateNumber.TabIndex = 11;
+            this.txtPlateNumber.TabIndex = 8;
             this.txtPlateNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // txtOfficialReceipt
@@ -344,7 +347,7 @@
             this.txtOfficialReceipt.LineIdleColor = System.Drawing.Color.Gray;
             this.txtOfficialReceipt.LineMouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(48)))), ((int)(((byte)(15)))));
             this.txtOfficialReceipt.LineThickness = 3;
-            this.txtOfficialReceipt.Location = new System.Drawing.Point(384, 252);
+            this.txtOfficialReceipt.Location = new System.Drawing.Point(372, 356);
             this.txtOfficialReceipt.Margin = new System.Windows.Forms.Padding(4);
             this.txtOfficialReceipt.Name = "txtOfficialReceipt";
             this.txtOfficialReceipt.Size = new System.Drawing.Size(255, 44);
@@ -364,7 +367,7 @@
             this.txtCR.LineIdleColor = System.Drawing.Color.Gray;
             this.txtCR.LineMouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(48)))), ((int)(((byte)(15)))));
             this.txtCR.LineThickness = 3;
-            this.txtCR.Location = new System.Drawing.Point(384, 304);
+            this.txtCR.Location = new System.Drawing.Point(372, 408);
             this.txtCR.Margin = new System.Windows.Forms.Padding(4);
             this.txtCR.Name = "txtCR";
             this.txtCR.Size = new System.Drawing.Size(255, 44);
@@ -384,7 +387,7 @@
             this.txtFaceImage.LineIdleColor = System.Drawing.Color.Gray;
             this.txtFaceImage.LineMouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(48)))), ((int)(((byte)(15)))));
             this.txtFaceImage.LineThickness = 3;
-            this.txtFaceImage.Location = new System.Drawing.Point(384, 200);
+            this.txtFaceImage.Location = new System.Drawing.Point(372, 304);
             this.txtFaceImage.Margin = new System.Windows.Forms.Padding(4);
             this.txtFaceImage.Name = "txtFaceImage";
             this.txtFaceImage.Size = new System.Drawing.Size(255, 44);
@@ -413,7 +416,7 @@
             this.btnAddFace.IconVisible = true;
             this.btnAddFace.IconZoom = 90D;
             this.btnAddFace.IsTab = false;
-            this.btnAddFace.Location = new System.Drawing.Point(660, 215);
+            this.btnAddFace.Location = new System.Drawing.Point(648, 319);
             this.btnAddFace.Name = "btnAddFace";
             this.btnAddFace.Normalcolor = System.Drawing.Color.Gray;
             this.btnAddFace.OnHovercolor = System.Drawing.Color.Gray;
@@ -436,14 +439,71 @@
             this.cmbVehicleType.Items = new string[] {
         "Car",
         "Motorcycle "};
-            this.cmbVehicleType.Location = new System.Drawing.Point(384, 113);
+            this.cmbVehicleType.Location = new System.Drawing.Point(372, 217);
             this.cmbVehicleType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbVehicleType.Name = "cmbVehicleType";
             this.cmbVehicleType.NomalColor = System.Drawing.Color.DarkGray;
             this.cmbVehicleType.onHoverColor = System.Drawing.Color.DarkGray;
             this.cmbVehicleType.selectedIndex = -1;
             this.cmbVehicleType.Size = new System.Drawing.Size(255, 27);
-            this.cmbVehicleType.TabIndex = 26;
+            this.cmbVehicleType.TabIndex = 11;
+            // 
+            // txtVehicleColor
+            // 
+            this.txtVehicleColor.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtVehicleColor.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.txtVehicleColor.ForeColor = System.Drawing.Color.Black;
+            this.txtVehicleColor.HintForeColor = System.Drawing.Color.Empty;
+            this.txtVehicleColor.HintText = "Color";
+            this.txtVehicleColor.isPassword = false;
+            this.txtVehicleColor.LineFocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(48)))), ((int)(((byte)(15)))));
+            this.txtVehicleColor.LineIdleColor = System.Drawing.Color.Gray;
+            this.txtVehicleColor.LineMouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(48)))), ((int)(((byte)(15)))));
+            this.txtVehicleColor.LineThickness = 3;
+            this.txtVehicleColor.Location = new System.Drawing.Point(372, 148);
+            this.txtVehicleColor.Margin = new System.Windows.Forms.Padding(4);
+            this.txtVehicleColor.Name = "txtVehicleColor";
+            this.txtVehicleColor.Size = new System.Drawing.Size(255, 44);
+            this.txtVehicleColor.TabIndex = 10;
+            this.txtVehicleColor.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            // 
+            // txtVehicleModel
+            // 
+            this.txtVehicleModel.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtVehicleModel.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.txtVehicleModel.ForeColor = System.Drawing.Color.Black;
+            this.txtVehicleModel.HintForeColor = System.Drawing.Color.Empty;
+            this.txtVehicleModel.HintText = "Vehicle Model";
+            this.txtVehicleModel.isPassword = false;
+            this.txtVehicleModel.LineFocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(48)))), ((int)(((byte)(15)))));
+            this.txtVehicleModel.LineIdleColor = System.Drawing.Color.Gray;
+            this.txtVehicleModel.LineMouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(48)))), ((int)(((byte)(15)))));
+            this.txtVehicleModel.LineThickness = 3;
+            this.txtVehicleModel.Location = new System.Drawing.Point(372, 44);
+            this.txtVehicleModel.Margin = new System.Windows.Forms.Padding(4);
+            this.txtVehicleModel.Name = "txtVehicleModel";
+            this.txtVehicleModel.Size = new System.Drawing.Size(255, 44);
+            this.txtVehicleModel.TabIndex = 9;
+            this.txtVehicleModel.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            // 
+            // txtCarmake
+            // 
+            this.txtCarmake.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtCarmake.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.txtCarmake.ForeColor = System.Drawing.Color.Black;
+            this.txtCarmake.HintForeColor = System.Drawing.Color.Empty;
+            this.txtCarmake.HintText = "Car make";
+            this.txtCarmake.isPassword = false;
+            this.txtCarmake.LineFocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(48)))), ((int)(((byte)(15)))));
+            this.txtCarmake.LineIdleColor = System.Drawing.Color.Gray;
+            this.txtCarmake.LineMouseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(48)))), ((int)(((byte)(15)))));
+            this.txtCarmake.LineThickness = 3;
+            this.txtCarmake.Location = new System.Drawing.Point(372, 96);
+            this.txtCarmake.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCarmake.Name = "txtCarmake";
+            this.txtCarmake.Size = new System.Drawing.Size(255, 44);
+            this.txtCarmake.TabIndex = 26;
+            this.txtCarmake.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // FrmRegister
             // 
@@ -451,6 +511,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(771, 567);
+            this.Controls.Add(this.txtCarmake);
+            this.Controls.Add(this.txtVehicleModel);
+            this.Controls.Add(this.txtVehicleColor);
             this.Controls.Add(this.cmbVehicleType);
             this.Controls.Add(this.btnAddFace);
             this.Controls.Add(this.txtFaceImage);
@@ -495,5 +558,8 @@
         private Bunifu.Framework.UI.BunifuFlatButton btnAddFace;
         private Bunifu.Framework.UI.BunifuMaterialTextbox txtIdNumber;
         private Bunifu.Framework.UI.BunifuDropdown cmbVehicleType;
+        private Bunifu.Framework.UI.BunifuMaterialTextbox txtVehicleColor;
+        private Bunifu.Framework.UI.BunifuMaterialTextbox txtVehicleModel;
+        private Bunifu.Framework.UI.BunifuMaterialTextbox txtCarmake;
     }
 }

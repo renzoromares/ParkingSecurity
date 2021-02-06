@@ -36,16 +36,19 @@ namespace ParkingSecurityAndManagement
                 try
                 {
                     await conn.OpenAsync();
-                    string query = "SELECT VEHICLE_OWNER.Id_Number" +
+                    string query = "SELECT VEHICLE_OWNER.PlateID" +
+                                         ",VEHICLE_OWNER.Id_Number" +
                                          ",VEHICLE_OWNER.FirstName" +
                                          ",VEHICLE_OWNER.LastName" +
                                          ",VEHICLE_OWNER.Position" +
                                          ",VEHICLE_OWNER.Department" +
                                          ",CREDENTIALS.Vehicle_Type" +
-                                         ",CREDENTIALS.PlateNumber" +
+                                         ",CREDENTIALS.Vehicle_Model" +
+                                         ",CREDENTIALS.Vehicle_Carmake" +
+                                         ",CREDENTIALS.Vehicle_Color" +
                                          ",CREDENTIALS.Face_Image " +
-                                         "FROM VEHICLE_OWNER INNER JOIN CREDENTIALS ON VEHICLE_OWNER.Id_Number = CREDENTIALS.Id_Number " +
-                                         "WHERE VEHICLE_OWNER.Id_Number = '"+txtId_Number.Text+"' ";
+                                         "FROM VEHICLE_OWNER INNER JOIN CREDENTIALS ON VEHICLE_OWNER.PlateID = CREDENTIALS.PlateID " +
+                                         "WHERE VEHICLE_OWNER.PlateID = '"+txtPlateNumber.Text+"' ";
 
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -59,14 +62,19 @@ namespace ParkingSecurityAndManagement
 
                                 pnlContainer.Visible = true;
                                 pnlfooter.Visible = true;
-                                lblIdNumber.Text = reader.GetValue(0).ToString();
-                                lblName.Text = reader.GetValue(1) + " " + reader.GetValue(2);
-                                lblPosition.Text = reader.GetValue(3).ToString();
-                                lblDepartment.Text = reader.GetValue(4).ToString();
-                                lblVehicleType.Text = reader.GetValue(5).ToString();
-                                lblPlatenumber.Text = reader.GetValue(6).ToString();
 
-                                byte[] img = (byte[])(reader[7]);
+                                lblPlatenumber.Text = reader.GetValue(0).ToString();
+                                lblIdNumber.Text = reader.GetValue(1).ToString();
+                                lblName.Text = reader.GetValue(2) + " " + reader.GetValue(3);
+                                lblPosition.Text = reader.GetValue(4).ToString();
+                                lblDepartment.Text = reader.GetValue(5).ToString();
+                                lblVehicleType.Text = reader.GetValue(6).ToString();
+                                lblVehicleModel.Text = reader.GetValue(7).ToString();
+                                lblCarmake.Text = reader.GetValue(8).ToString();
+                                lblVehicleColor.Text = reader.GetValue(9).ToString();
+                                
+
+                                byte[] img = (byte[])(reader[10]);
                                 if (img == null)
                                 {
                                     pictureBox1.Image = null;
