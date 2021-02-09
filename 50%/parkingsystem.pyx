@@ -1,11 +1,72 @@
-import pyodbc
 import cv2
-import face_recognition
 import numpy as np
-import os
+import face_recognition
+import time
+import requests
+import pyodbc
+import re
 
 Encodes = []
 ID = []
+
+def takePicturePlateNumber():
+    cap = cv2.VideoCapture(0)
+    ret, frame = cap.read()
+    (grabbed, frame) = cap.read()
+    showimg = frame
+    cv2.waitKey(1)
+    image = "LicPlateImages/capture.png"
+    cv2.imwrite(image, frame)
+    cap.release()
+
+
+def plateNumberRecognition():
+    with open('LicPlateImages/capture.png', 'rb') as fp:
+        response = requests.post(
+            'https://api.platerecognizer.com/v1/plate-reader/',  # Request to API Plate Number
+            data=dict(regions='ph'),  # Optional
+            files=dict(upload=fp),
+            headers={'Authorization': 'Token 2511c6f5b2f3b49a69ec305121be8dd4b023cf75'})  # Set token given by the API
+    plateNumber = response.json()  # return JSON
+    try:
+        plateNumberVal = plateNumber['results'][0]['plate']  # Get Plate Number Value
+        print("Plate Number: " + str(plateNumberVal).upper())
+        checkPlateNumber(plateNumberVal)  # Send the Plate Number Value to check if the plate number is registered
+    except:
+        main()  # Return to main if no plate number detected or captured
+
+
+def checkPlateNumber(val):
+    server = 'sql5101.site4now.net'
+    database = 'DB_A6D6D2_Try'
+    username = 'DB_A6D6D2_Try_admin'
+    password = 'palermo123'
+    cnxn = pyodbc.connect(
+        'DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + server + ';DATABASE=' + database + ';UID=' + username + ';PWD=' + password)
+    cursor = cnxn.cursor()
+    img = cv2.imread('LicPlateImages/capture.png')
+    try:
+        cursor.execute("SELECT PlateID FROM DB_A6D6D2_Try.dbo.VEHICLE_OWNER WHERE PlateID='" + val + "'")
+        data = cursor.fetchone()
+        print(data[0])
+        cv2.rectangle(img, (50, 50), (img.shape[1] - 120, img.shape[2] + 15), (0, 225, 0), cv2.FILLED)
+        cv2.putText(img, 'PLATE NUMBER RECOGNIZED', (50, 50), cv2.FONT_HERSHEY_DUPLEX, 1, (255, 255, 255),2,cv2.LINE_AA)
+        cv2.rectangle(img, (50, 100), (img.shape[1] - 400, img.shape[2] + 65), (0, 0, 0), cv2.FILLED)
+        cv2.putText(img, val.upper(), (50, 100), cv2.FONT_HERSHEY_DUPLEX, 1, (255, 255, 255),2,cv2.LINE_AA)
+        cv2.imshow('Result',  img)
+        cv2.waitKey(0)
+        cv2.destroyWindow('Result')
+        faceRecognition(data[0])
+    except TypeError:
+        cv2.rectangle(img, (50, 50), (img.shape[1] - 50, img.shape[2] + 15), (0, 0, 255), cv2.FILLED)
+        cv2.putText(img, 'PLATE NUMBER NOT RECOGNIZED', (50, 50), cv2.FONT_HERSHEY_DUPLEX, 1, (255, 255, 225),2,cv2.LINE_AA)
+        cv2.rectangle(img, (50, 100), (img.shape[1] - 400, img.shape[2] + 65), (0, 0, 0), cv2.FILLED)
+        cv2.putText(img, val.upper(), (50, 100), cv2.FONT_HERSHEY_DUPLEX, 1, (255, 255, 255),2,cv2.LINE_AA)
+        cv2.namedWindow('Result')
+        cv2.moveWindow('Result', 40,30)
+        cv2.imshow('Result', img)
+        cv2.waitKey(0)
+        cv2.destroyWindow('Result')
 
 def getImage():
     server = 'sql5101.site4now.net'
